@@ -1,0 +1,14 @@
+# Base da imagem
+FROM php:8.1-fpm
+
+# Copiar os arquivos da aplicação
+COPY . /var/www/html
+
+# Instalar dependências (se necessário)
+RUN apt-get update && apt-get install -y libzip-dev && docker-php-ext-install zip
+
+# Expor a porta
+EXPOSE 80
+
+# Comando para iniciar o servidor web
+CMD ["php-fpm"]
